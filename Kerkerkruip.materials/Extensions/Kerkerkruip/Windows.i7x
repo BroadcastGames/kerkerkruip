@@ -357,6 +357,7 @@ Section - Inventory window
 
 Rule for refreshing the inventory-window:
 	[follow the full inventory rule;]
+	try taking inventory;
 	say run paragraph on;
 
 Rule for refreshing the inventory-window header:

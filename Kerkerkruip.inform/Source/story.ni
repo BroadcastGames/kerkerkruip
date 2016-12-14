@@ -7,7 +7,7 @@ Kerkerkruip is published under the GNU GPL~3 license. You may download the sourc
 
 The story headline is "Glulx technical demonstration".
 The story genre is "Other".
-The release number is 1.
+The release number is 2.
 
 
 Section - 3rd Party Inclusions
@@ -59,6 +59,13 @@ Include RuntimeInterpreterDetect by Kerkerkruip.
 Include DataValues by Kerkerkruip.
 
 
+[
+Inventory Items
+]
+
+A petri dish is carried by the player.
+A flask is carried by the player.
+A wallet is carried by the player.
 
 [
 ======================================================================================
@@ -66,7 +73,7 @@ Include DataValues by Kerkerkruip.
 ======================================================================================
 ]
 
-Place is a room. "Here it starts. You can go East or West.".
+Place is a room. "Here it starts. You can go East or West. Command 'panels' will hide or show the side windows.".
 
 Wild West is a room, west of Place. "East is Place."
 
