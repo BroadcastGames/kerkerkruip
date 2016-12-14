@@ -9,19 +9,12 @@ The story headline is "Glulx technical demonstration".
 The story genre is "Other".
 The release number is 1.
 
+
 Section - 3rd Party Inclusions
 
-[ Check https://github.com/i7/extensions if the I7 site only has older versions ]
-
-[Include version 1/131215 of Alternative Startup Rules by Dannii Willis.]
 
 Include Basic Screen Effects by Emily Short.
-[Include version 7 of Numbered Disambiguation Choices by Aaron Reed.]
-Include version 10/150126 of Glulx Entry Points by Emily Short.
-[Include version 8/140515 of Dynamic Objects by Jesse McGrew.]
-[Include Questions by Michael Callaghan.]
 Include version 1/140209 of Interpreter Sniffing by Friends of I7.
-[Include version 1/140818 of Xorshift by Dannii Willis.]
 
 
 Section - broken logic hacks
@@ -40,17 +33,13 @@ Section - Graphics and Windows
 [ Disable the status line purely to prevent reverse mode from being switched on. This doesn't prevent us from opening the status line manually, which we already had to do. ]
 Use no status line.
 
-[ Testing with Glimmr installed will be slower, due to compilation and graphics, so commits to story.ni would generally best be made with it commented out. It is not necessary to comment out Flexible Windows when Glimmr is commented in. ]
 
 Include version 15/160609 of Flexible Windows by Jon Ingold.
 Include Hyperlinks by Kerkerkruip.
-
-[Include Kerkerkruip Glimmr Additions by Erik Temple.]
-
 Include version 1/150128 of Menus by Dannii Willis.
 Include Windows by Kerkerkruip.
 
-[Include Extended Debugging by Erik Temple.]
+
 
 Attribute printed is a truth state variable. Attribute printed is false.
 
