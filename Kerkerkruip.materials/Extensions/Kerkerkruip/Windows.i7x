@@ -1,5 +1,9 @@
 Windows by Kerkerkruip begins here.
 
+[
+MODIFIED to remove story / game logic down to a bare Windows use demonstration.
+]
+
 Use authorial modesty.
 
 
@@ -263,6 +267,8 @@ Rule for refreshing the stats window:
 		now long status is true;
 	otherwise:
 		say "[link 2]< back[end link][line break][line break][run paragraph on]";
+		say "here goes some details, showing how the HyperLink altered output of this Statistics window!";
+		say "[line break]details, details, details";
 		[follow the show basic stats rule;
 		follow the status combat stats rules;
 		follow the status attribute rules;
@@ -331,7 +337,7 @@ Rule for refreshing the powers window:
 			now power-tip-text is the next tip text;
 		say "[line break][italic type]Tip:[roman type] [power-tip-text]";
 		say "[line break][run paragraph on]";]
-		say "disabled granted power logic.";
+		say "disabled granted power logic. You need to put something here specific to your game logic.";
 
 Rule for processing hyperlinks for the powers window:
 	let ability be the hyperlink ID typecast to an object;
