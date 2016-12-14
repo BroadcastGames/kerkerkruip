@@ -2,7 +2,7 @@
 
 [
 Stripped down from the original story game for sake of technical demonstration.
-Kerkerkruip is published under the GNU GPL~3 license. You may download the source code for Kerkerkruip at \ https://github.com/i7/kerkerkruip
+Kerkerkruip is published under the GNU GPL~3 license. You may download the source code for Kerkerkruip at https://github.com/i7/kerkerkruip
 ]
 
 The story headline is "Glulx technical demonstration".
@@ -60,12 +60,15 @@ Include DataValues by Kerkerkruip.
 
 
 [
-Inventory Items
+======================================================================================
+==  Inventory items that work in any room
+======================================================================================
 ]
 
 A petri dish is carried by the player.
 A flask is carried by the player.
 A wallet is carried by the player.
+
 
 [
 ======================================================================================
