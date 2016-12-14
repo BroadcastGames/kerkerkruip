@@ -39,48 +39,8 @@ Include Hyperlinks by Kerkerkruip.
 Include version 1/150128 of Menus by Dannii Willis.
 Include Windows by Kerkerkruip.
 
-
-
-Attribute printed is a truth state variable. Attribute printed is false.
-
-To check initial position of attribute:
-	if attribute printed is false:
-		say "You are [run paragraph on]";
-		now attribute printed is true;
-	otherwise:
-		say ", [run paragraph on]".
-
-
-
-[Include Kerkerkruip Start and Finish by Victor Gijsbers.]
-
-Section - Detecting whether or not the Gargoyle config file has been applied
-
-[ We can detect whether or not the Gargoyle config file has been applied by checking whether one of the text colours has been changed. Warning, user style 2 will be pretty ugly if it has! ]
-
-GarGlk is an IO implementation.
-
-To decide whether the gargoyle config file was used:
-	(- DetectGargoyleConfigFile() -).
-
-Include (-
-[ DetectGargoyleConfigFile res;
-	! Don't test the style in CocoaGlk because it will crash
-	if ( ~~(+ CocoaGlk detection flag +) )
-	{
-		res = glk_style_measure( gg_mainwin, style_User2, stylehint_TextColor, gg_arguments );
-	}
-	return res && gg_arguments-->0 == $F400A1;
-];
--).
-
-An IO implementation detection rule (this is the test for GarGlk rule):
-	if the Gargoyle config file was used:
-		rule succeeds with result GarGlk;
-
-
-
-
+[Windows by Kerkerkruip uses language constructs we need from: ]
+Include RuntimeInterpreterDetect by Kerkerkruip.
 Include DataValues by Kerkerkruip.
 
 
@@ -91,7 +51,7 @@ Include DataValues by Kerkerkruip.
 ======================================================================================
 ]
 
-Place is a room. "Here it starts".
+Place is a room. "Here it starts. You can go East or West.".
 
 Wild West is a room, west of Place. "East is Place."
 
