@@ -1,18 +1,13 @@
-"Kerkerkruip 10" by Victor Gijsbers
+"KerkerkruipWindowExample0" by "Community"
 
-[INFORM 7 update TODO list:
+[
+Stripped down from the original story game for sake of technical demonstration.
+Kerkerkruip is published under the GNU GPL~3 license. You may download the source code for Kerkerkruip at \ https://github.com/i7/kerkerkruip
+]
 
-* Make sure the Questions replacement below works.
-* Check the relationship at the start of Monsters.
-* Fix unidentified scrolls, scroll of knowledge and magical guides.]
-
-
-
-The story headline is "An IF roguelike".
-The story genre is "dungeon crawl".
-The release number is 10.
-The story description is "Kerkerkruip is a short-form roguelike in the interactive fiction medium, featuring meaningful tactical and strategic depth, innovative game play, zero grinding, and a sword & sorcery setting that does not rehash tired clichés."
-Release along with cover art and a file of "Gargoyle config file" called "Kerkerkruip.ini".
+The story headline is "Glulx technical demonstration".
+The story genre is "Other".
+The release number is 1.
 
 Section - 3rd Party Inclusions
 
@@ -20,13 +15,13 @@ Section - 3rd Party Inclusions
 
 [Include version 1/131215 of Alternative Startup Rules by Dannii Willis.]
 
-Include Basic Screen Effects by Emily Short. 
-Include version 7 of Numbered Disambiguation Choices by Aaron Reed.
+Include Basic Screen Effects by Emily Short.
+[Include version 7 of Numbered Disambiguation Choices by Aaron Reed.]
 Include version 10/150126 of Glulx Entry Points by Emily Short.
-Include version 8/140515 of Dynamic Objects by Jesse McGrew.
-Include Questions by Michael Callaghan.
+[Include version 8/140515 of Dynamic Objects by Jesse McGrew.]
+[Include Questions by Michael Callaghan.]
 Include version 1/140209 of Interpreter Sniffing by Friends of I7.
-Include version 1/140818 of Xorshift by Dannii Willis.
+[Include version 1/140818 of Xorshift by Dannii Willis.]
 
 
 
@@ -63,218 +58,222 @@ To check initial position of attribute:
 		say ", [run paragraph on]".
 
 
-Section - Include all the Kerkerkruip extensions
 
-Include Kerkerkruip Permadeath by Victor Gijsbers.
-Include Kerkerkruip Persistent Data by Victor Gijsbers.
-Include Kerkerkruip Dungeon Generation by Victor Gijsbers.
-Include Kerkerkruip Events by Victor Gijsbers.
-Include Kerkerkruip ATTACK by Victor Gijsbers.
-Include Kerkerkruip Monster Abilities by Victor Gijsbers.
-Include Kerkerkruip Systems by Victor Gijsbers.
-Include Kerkerkruip Systems - Hiding Smoke Ethereal by Victor Gijsbers.
-[Include Kerkerkruip Damage by Victor Gijsbers.]
-Include Kerkerkruip Actions and UI by Victor Gijsbers.
-Include Kerkerkruip Items by Victor Gijsbers.
-Include Kerkerkruip Religion by Victor Gijsbers.
-Include Kerkerkruip Locations by Victor Gijsbers.
-Include Kerkerkruip Scenery by Victor Gijsbers.
-Include Kerkerkruip Monsters by Victor Gijsbers.
-Include Kerkerkruip Events and Specials by Victor Gijsbers.
-Include Kerkerkruip Dreams by Victor Gijsbers.
-Include Kerkerkruip Start and Finish by Victor Gijsbers.
-Include Kerkerkruip Tests by Victor Gijsbers.
-Include Kerkerkruip Final Declarations by Victor Gijsbers.
-Include Kerkerkruip Help and Hints by Victor Gijsbers.
-Include Automated Testing by Kerkerkruip.
-Include Test Sets by Kerkerkruip.
+[Include Kerkerkruip Start and Finish by Victor Gijsbers.]
 
-Section - Increase memory settings
+Section - Detecting whether or not the Gargoyle config file has been applied
 
-Use MAX_PROP_TABLE_SIZE of 800000.
-Use MAX_OBJ_PROP_COUNT of 256.
-Use MAX_STATIC_DATA of 1000000.
-Use MAX_OBJECTS of 1000.
-Use MAX_SYMBOLS of 50000.
-Use MAX_ACTIONS of 250.
-Use MAX_LABELS of 20000.
-Use ALLOC_CHUNK_SIZE of 32768.
-Use MAX_NUM_STATIC_STRINGS of 40000.
-Use MAX_DICT_ENTRIES of 2000.
+[ We can detect whether or not the Gargoyle config file has been applied by checking whether one of the text colours has been changed. Warning, user style 2 will be pretty ugly if it has! ]
 
+GarGlk is an IO implementation.
 
-Section - Score
+To decide whether the gargoyle config file was used:
+	(- DetectGargoyleConfigFile() -).
 
-Use scoring.
-The maximum score is 18. [1 + 1 + 2 + 2 + 3 + 4 + 5 = 18]
-The notify score changes rule is not listed in any rulebook.
+Include (-
+[ DetectGargoyleConfigFile res;
+	! Don't test the style in CocoaGlk because it will crash
+	if ( ~~(+ CocoaGlk detection flag +) )
+	{
+		res = glk_style_measure( gg_mainwin, style_User2, stylehint_TextColor, gg_arguments );
+	}
+	return res && gg_arguments-->0 == $F400A1;
+];
+-).
+
+An IO implementation detection rule (this is the test for GarGlk rule):
+	if the Gargoyle config file was used:
+		rule succeeds with result GarGlk;
 
 
 
-Section - Generation info
-
-Generation info is a truth state that varies. Generation info is [true]false.
 
 
+Section - Low-level Access to Data Values
 
-Section - Testing - Not for release
+Table of Data Storage
+key (number)	value (number)
+--	--
+with 14 blank rows
 
-[Last when play begins:
-	move Fafhrd to Entrance Hall;
-	now Fafhrd is asleep.]
+Table of Victories
+Victories	Level	Best-Level
+0	0	0
 
-[Last when play begins:
-	Now every medium banquet-dining person is seen;
-
-Every turn:
-	if Banquet is dreamable:
-		Now Banquet is current-test-dream;
+To decide which number is data value (X - a number):
+	if there is a key of X in the Table of Data Storage:
+		choose row with a key of X in the Table of Data Storage;
+		decide on the value entry;
 	otherwise:
-		now Banquet is not current-test-dream;]
+		decide on 0;
 
-[Dream of Tungausy Shaman is current-test-dream.]
-
-
-[Section - Flexible Windows relisting
-
-[Kerkerkruip's when play begin rules don't fire until after the menu is cleared. This means that extension such as Flexible Windows that have critical startup code in when play begins need to be adjusted. Due to weaknesses in Inform's extension interactions, this has to be in story.ni rather than the Kerkerkruip Glimmr Additions extension.]
-
-The allocate rocks rule is not listed in the when play begins rules. The allocate rocks rule is listed before the show the title screen rule in the startup rules.
-The initial hyperlink request rule is not listed in the when play begins rules. The initial hyperlink request rule is listed before the show the title screen rule in the startup rules.
-
-Section - Relist rock validation rule (not for release)
-
-The rock validation rule is not listed in the when play begins rules. The rock validation rule is listed before the show the title screen rule in the startup rules.]
+To set data value (X - a number) to (Y - a number), table only (this is data-value setting):
+	if there is a key of X in the Table of Data Storage:
+		choose row with a key of X in the Table of Data Storage;
+	otherwise:
+		choose a blank row in the Table of Data Storage;
+		now the key entry is X;
+	now the value entry is Y;
+	[if not table only:
+		save data storage;]
 
 
+Section - Accessing Data Values
 
-Section - Defining perform syntax (for use without Glimmr Canvas Animation by Erik Temple)
+data storage parameter is a kind of value. The data storage parameters are defined by the Table of Data Value Labels.
 
-To say perform/@ (ph - phrase): (- if (0==0) {ph} -).
+A data storage parameter has a number called enabled value. A data storage parameter has a number called disabled value. A data storage parameter has a number called data value index.
 
+Table of Data Value Labels
+data storage parameter	data value index	enabled value	disabled value
+total victories	1	--	--
+current difficulty	2	--	--
+highest achieved difficulty	3	--	--
+advanced content	4	1	0
+main menu graphics flag	5	1	-1
+session flag	6	1	0
+window panels flag	7	0	1
+menu hyperlinks	8	1	-1
+sound	9	1	-1
+screen reader mode	10	1	-1
 
+To decide which number is (P - a data storage parameter) as a number: (- {P} -);
 
-Section - Plurality fix
+To decide which number is the/-- number/setting of (P - a data storage parameter):
+	decide on data value (P as a number);
 
-[Let's see whether this works.]
+To decide whether (P - a data storage parameter) is/are unset:
+	if disabled value of P is 0 or enabled value of P is 0, no;
+	Decide on whether or not number of P is 0;
 
-To decide whether (item - an object) acts plural: 
-	if the item is plural-named:
-		yes;
-	no.
+To decide whether (P - a data storage parameter) is/are enabled:
+	decide on whether or not number of P is enabled value of P;
 
+To decide whether (P - a data storage parameter) is/are disabled:
+	decide on whether or not number of P is disabled value of P;
 
+To decide whether main menu graphics is/are enabled:
+	if screen reader mode is enabled, no;
+	decide on whether or not main menu graphics flag is enabled;
 
+To decide whether window panels is/are enabled:
+	if screen reader mode is enabled, no;
+	decide on whether or not window panels flag is enabled;
 
-Chapter - Questions fixes
+To decide whether main menu graphics is/are disabled:
+	if screen reader mode is enabled, yes;
+	decide on whether or not main menu graphics flag is disabled;
 
-[This needs a lot of tweaks!]
+To decide whether window panels is/are disabled:
+	if screen reader mode is enabled, yes;
+	decide on whether or not window panels flag is disabled;
 
-Section - Rules for menu questions (in place of Section 3 - Rules for menu questions in Questions by Michael Callaghan)
+To increase the/-- (param - a data storage parameter) by (N - a number), table only:
+	if table only:
+		set param to (number of param) + N, table only;
+	otherwise:
+		set param to (number of param) + N;
 
-Menu question rules is a rulebook.
+To set the/-- (param - a data storage parameter) to (N - a number), table only:
+	let P be param as a number;
+	if table only:
+		set data value P to N, table only;
+	otherwise:
+		set data value P to N;
 
-The menu question rules have outcomes exit (success), retry (failure), menu (failure) and parse (failure).
+To enable (param - a data storage parameter), table only:
+	if table only:
+		set param to enabled value of param, table only;
+	otherwise:
+		set param to enabled value of param;
 
-The first menu question rule (this is the invalid menu reply rule):
-	if the player's command matches "help" or the player's command matches "menu" or the player's command matches "hint" or the player's command matches "info":
-		if closed question mode is true and menu question mode is true:
-			menu;		 
-	if the player's command does not match "[number]":
-		if closed question mode is true:
-			retry;
-		if closed question mode is false:
-			parse;
-	if the number understood is less than 1:
-		retry;
-	if the number understood is greater than the number of entries in the current question menu:
-		retry.
+To disable (param - a data storage parameter), table only:
+	if table only:
+		set param to disabled value of param, table only;
+	otherwise:
+		set param to disabled value of param;
 
-The last menu question rule (this is the default menu question rule):
-	exit.
-
-	
-Section - Questions fix (in place of Section 4 - Processing menu questions in Questions by Michael Callaghan)
-
-[We need to end the turn after a menu, otherwise no rules run.]
-
-Repeat-question is a truth state that varies. Repeat-question is false.
-
-After reading a command when menu question mode is true:
-	follow the menu question rules;
-	if the outcome of the rulebook is the menu outcome:	
-		now repeat-question is true;
-	if the outcome of the rulebook is the exit outcome:
-		deactivate menu question mode;
-		follow the every turn rules;
-		follow the advance time rule;
-		change the text of the player's command to "dontparse";
-	if the outcome of the rulebook is the retry outcome:
-		reject the player's command;
-	if the outcome of the rulebook is the parse outcome:
-		deactivate menu question mode.
-		
-Dontparsing is an action applying to nothing. Understand "dontparse" as dontparsing.
-
-Carry out dontparsing:
-	do nothing instead.
-
-[Section - Another Questions fix (in place of Section 4 - Phrase used to ask questions in closed mode in Questions by Michael Callaghan)
-
-The saved question prompt is text that varies.
-
-To ask a closed question, in number mode, in menu mode, in yes/no mode, in gender mode or in text mode:
-	now closed question mode is true;
-	now saved prompt is the command prompt;
-	if in number mode:
-		now the command prompt is the closed number prompt;
-		now number question mode is true;
-	if in menu mode:
-		now the command prompt is the closed menu prompt;
-		now menu question mode is true;
-	if in yes/no mode:
-		now the command prompt is the closed yes/no prompt;
-		now yes/no question mode is true;
-	if in gender mode:
-		now the command prompt is the closed gender prompt;
-		now gender question mode is true;
-	if in text mode: 
-		now the command prompt is the closed text prompt;
-		now text question mode is true;
-	if current question is not "":
-		say "[current question][line break]";
-	now saved question prompt is the command prompt;
-	if in menu mode:
-		repeat with counter running from 1 to the number of entries in the current question menu:
-			say "[counter] - [entry counter of the current question menu][line break]".]
-
-The saved question prompt is text that varies. [TODO - remove when above has been fixed.]
+To toggle (param - a data storage parameter), table only:
+	if param is enabled:
+		if table only:
+			disable param, table only;
+		otherwise:
+			disable param;
+	otherwise:
+		if table only:
+			enable param, table only;
+		otherwise:
+			enable param;
 
 
 
+Section - Dependent Extensions for Windows
 
-	
-Section - Numbered Disambiguation Fix
+[Include Kerkerkruip Actions and UI by Victor Gijsbers.]
+[Include Kerkerkruip Persistent Data by Victor Gijsbers.]
 
-[Not sure if this is necessary, but it won't do any harm!]
-[TODO: Check if this is still necessary or appropriate with version 7 of Numbered Disambiguation Choices. Note that the documentation for the extension suggests this:
 
-If you want to change this so numbers can only be used immediately after a disambiguation question is asked, add the following to your code:
+Chapter - More synonyms
 
-	Every turn: follow the Numbered Disambiguation Choices reset disambiguables rule.
+Understand "jump in/into [something]" as entering.
+Understand "throw [something] in/into [something]" as inserting it into.
+Understand "drop [something] in/into [something]" as inserting it into.
+
+[ Allow "insert noun" to automatically choose the appropriate machine. ]
+Understand "insert [something] into/in [something]" as inserting it into.
+Does the player mean inserting into a container:
+	it is likely.
+
+[Understand the command "equip" as "use".
+Understand "use [clothing]" as wearing.
+Understand "use [scroll]" as reading.
+Understand "use [grenade]" as throwing.
+Understand "use [fungicide contraption]" as spraying.
+Understand "use [weapon]" as readying.]
+
+Understand "activate [something]" as switching on.
+Understand "deactivate [something]" as switching off.
+Understand the command "enable" as "activate".
+Understand the command "disable" as "deactivate".
+Understand the command "toggle" as "switch".
+
+
+Chapter - Option commands
+
+[An option is a kind of value.
+The invalid option is an option.]
+
+Understand "[option]" and "the [option]" as "[option token]".
+
+Enabling is an action out of world applying to one option.
+Understand "activate [option token]" as enabling.
+Understand "turn [option token] on" as enabling.
+Understand "turn on [option token]" as enabling.
+Understand "switch on [option token]" as enabling.
+Understand "switch [option token] on" as enabling.
+
+Disabling is an action out of world applying to one option.
+Understand "deactivate [option token]" as disabling.
+Understand "turn [option token] off" as disabling.
+Understand "turn off [option token]" as disabling.
+Understand "switch off [option token]" as disabling.
+Understand "switch [option token] off" as disabling.
+
+Toggling is an action out of world applying to one option.
+Understand "switch [option token]" as toggling.
+Understand "[option]" as toggling.
+
+
+
+[
+======================================================================================
+==  Main Story Logic of rooms
+======================================================================================
 ]
 
-Definition: an object (called item) is still-disambiguable if disambiguation ID of item > 0.
+Place is a room. "Here it starts".
 
-Before looking or taking inventory (this is the reset disambiguation IDs rule):
-	repeat with item running through still-disambiguable things:
-		now disambiguation ID of item is 0.
+Wild West is a room, west of Place. "East is Place."
 
-Section - Auto-transcript while testing (not for release)
+Field is a room, east of Place. "West is Place".
 
-Last when play begins (this is the switch story transcript on rule):
-	if text capturing is active or automated fight test is true, make no decision;
-	try switching the story transcript on;
-	say "Current level: [difficulty level difficulty] ([difficulty])[paragraph break]";
-	try asking status;
-	try taking inventory;
