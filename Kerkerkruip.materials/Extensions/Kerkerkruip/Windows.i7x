@@ -250,18 +250,17 @@ Showing detailed status report is false.
 
 Rule for refreshing the stats window:
 	if showing detailed status report is false:
-		[now long status is false;
+		now long status is false;
 		now attribute printed is false;
-		follow the status combat stats rules;
+		[follow the status combat stats rules;
 		follow the short player form status rule;[the player's form]
-		follow the status attribute rules;
+		follow the status attribute rules;]
 		say "[if attribute printed is true]. [end if][bracket][link 1]detailed status report[end link][close bracket][line break][run paragraph on]";
 		follow the unallocated faculty short status rule;[shortened message for any unassigned faculty points]
 		say "[line break][run paragraph on]";
-		follow the show basic stats rule;[show statistics]
+		[follow the show basic stats rule;[show statistics]]
 		say run paragraph on;
-		now long status is true;]
-		say "long status disabled";
+		now long status is true;
 	otherwise:
 		say "[link 2]< back[end link][line break][line break][run paragraph on]";
 		[follow the show basic stats rule;
@@ -288,10 +287,12 @@ To check initial position of attribute:
 		say ", [run paragraph on]".
 
 This is the unallocated faculty short status rule:
-  say "long status problems.";
-	[if long status is false:
+	if long status is false:
+		say "long status is false. I should be saying something about unallocated faculty here, specific to the game logic!".
+	  [
 		if unallocated faculty is greater than 0:
-			say "[italic type]Increase one of your faculties by typing 'body', 'mind', or 'spirit' ([unallocated faculty] point[if unallocated faculty is greater than 1]s[end if]).[roman type][line break][run paragraph on]".]
+			say "[italic type]Increase one of your faculties by typing 'body', 'mind', or 'spirit' ([unallocated faculty] point[if unallocated faculty is greater than 1]s[end if]).[roman type][line break][run paragraph on]".
+		]
 
 Rule for refreshing the stats window header:
 	say "[first custom style]Statistics[roman type]";
@@ -330,7 +331,7 @@ Rule for refreshing the powers window:
 			now power-tip-text is the next tip text;
 		say "[line break][italic type]Tip:[roman type] [power-tip-text]";
 		say "[line break][run paragraph on]";]
-		say "disabled power logic.";
+		say "disabled granted power logic.";
 
 Rule for processing hyperlinks for the powers window:
 	let ability be the hyperlink ID typecast to an object;
@@ -420,9 +421,9 @@ To close side windows:
 Section - Events
 
 Last when play begins (this is the check info panel capacity rule):
-	[if screen reader mode is enabled:
+	if screen reader mode is enabled:
 		open up the status window;
-		make no decision;]
+		make no decision;
 	if window panels are disabled:
 		say "[bracket]Information panels are disabled. Type PANELS to enable them.[close bracket][line break][run paragraph on]";
 	otherwise:
@@ -447,9 +448,9 @@ First before displaying (this is the fix our windows rule before displaying rule
 
 Last after displaying:
 	close the status window;
-	[if in-game menu-checking:
+	if in-game menu-checking:
 		open side windows;
-		open up the status window;]
+		open up the status window;
 
 
 

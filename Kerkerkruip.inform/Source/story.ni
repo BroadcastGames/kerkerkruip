@@ -25,7 +25,22 @@ The information panels are an option.
 
 
 [How does this get defined in the original project? ]
-long status is a truth state variable. long status is false.
+long status is a truth state variable. long status is true.
+
+
+
+Chapter - Credits menu
+
+Understand "credit" or "credits" or "copyright" or "copyrights" or "licence" or "license" as requesting the story file version.
+
+Requesting the story file version is in-game menu-checking.
+
+The announce the story file version rule is not listed in any rulebook.
+
+Carry out requesting the story file version:
+	say "I'm supposed to show a menu here.";
+	say "Ok.";
+
 
 
 Section - Graphics and Windows
