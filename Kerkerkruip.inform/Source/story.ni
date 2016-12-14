@@ -24,11 +24,15 @@ Include version 1/140209 of Interpreter Sniffing by Friends of I7.
 [Include version 1/140818 of Xorshift by Dannii Willis.]
 
 
+Section - broken logic hacks
 
 [ This belongs in Actions, but it has to be defined before the Glimmr and Windows extensions. We should move this somewhere sensible later, and maybe use it for all the options? ]
 An option is a kind of value.
 The information panels are an option.
 
+
+[How does this get defined in the original project? ]
+long status is a truth state variable. long status is false.
 
 
 Section - Graphics and Windows

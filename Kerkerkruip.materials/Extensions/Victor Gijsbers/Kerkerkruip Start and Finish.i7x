@@ -164,7 +164,7 @@ After showing the title screen (this is the apply the difficulty rule):
 	if difficulty is 0:
 		increase health of the player by 3;
 		increase permanent health of the player by 3;
-		increase melee of the player by 1;		
+		increase melee of the player by 1;
 		increase defence of the player by 1;
 	if difficulty is 1:
 		increase health of the player by 1;
@@ -182,7 +182,7 @@ After showing the title screen (this is the apply the difficulty rule):
 					buff guy;
 				if generation info is true:
 					say "[The guy] now has:[line break][health of guy] health[line break][melee of guy] attack[line break][defence of guy] defence[line break][body score of guy] body[line break][mind score of guy] mind[line break][spirit score of guy] spirit[paragraph break]";
-			
+
 To buff (guy - a person):
 	let m be a random number between 1 and 8;
 	if m is 1:
@@ -191,9 +191,9 @@ To buff (guy - a person):
 		increase defence of guy by 1;
 	if m is 3:
 		increase body score of guy by 1;
-	if m is 4:	
+	if m is 4:
 		increase mind score of guy by 1;
-	if m is 5:	
+	if m is 5:
 		increase spirit score of guy by 1.
 
 
@@ -232,20 +232,20 @@ To display the text menu:
 	cancel character input in the main window;
 	clear the screen;
 	[redraw status line;
-	say paragraph break;]	
+	say paragraph break;]
 	if glulx text-buffer graphics is supported:
 		display figure opening figure[ centered];
 	otherwise:
 		say "[bold type]Kerkerkruip[roman type] -- by Victor Gijsbers";
-	say paragraph break;			
-	say fixed letter spacing;		
+	say paragraph break;
+	say fixed letter spacing;
 	[say "'[story title]' by [story author]";
 	say paragraph break;]
 	say " SCORES:[line break]";
 	say "   Current level                :  [difficulty level difficulty] ([difficulty])[paragraph break]";
 	let best-level be setting of highest achieved difficulty;
 	say "   Highest level achieved       :  [difficulty level best-level] ([best-level])[line break][paragraph break]";
-	say "   Your total victories         :  [number of total victories][line break]";		
+	say "   Your total victories         :  [number of total victories][line break]";
 [		say "   Your current winning streak  :    [unless winning-streak is greater than 9] [end if][unless winning-streak is greater than 99] [end if] [winning-streak][line break]";
 	say "   Your best winning streak     :  [unless best-winning-streak is greater than 9] [end if][unless best-winning-streak is greater than 99] [end if]   [best-winning-streak][paragraph break]";]
 	say paragraph break;
@@ -283,7 +283,7 @@ To display the text menu:
 		replace player input;]
 
 To close the text menu:
-	clear the screen; 
+	clear the screen;
 
 To say difficulty level (m - a number):
 	if m is 0:
@@ -295,7 +295,7 @@ To say difficulty level (m - a number):
 	if m is 3:
 		say "EXPERT[run paragraph on]";
 	if m is 4:
-		say "MASTER[run paragraph on]";		
+		say "MASTER[run paragraph on]";
 	if m is 5:
 		say "GRANDMASTER[run paragraph on]";
 	if m is 6:
@@ -336,7 +336,7 @@ Definition: a number is continue:
 	no.
 Menu command continue:
 	start the game;
-	
+
 [ S: play a specific dungeon seed ]
 Definition: a number is seed:
 	if it is 115, yes;
@@ -492,7 +492,7 @@ Before showing the title screen (this is the screen reader mode rule):
 
 Table of Options Menu (continued)
 title	order	rule
-"Screen reader mode: [bold type][if screen reader mode is disabled]Off[otherwise]On[end if]"	10	the toggle screen reader mode rule	
+"Screen reader mode: [bold type][if screen reader mode is disabled]Off[otherwise]On[end if]"	10	the toggle screen reader mode rule
 
 This is the toggle screen reader mode rule:
 	toggle screen reader mode;
@@ -548,7 +548,7 @@ A last exiting a menu rule (this is the restart if graphics were changed rule):
 		enable session flag;
 		restart immediately;
 
-To restart immediately: 
+To restart immediately:
 	(- @restart; -).]
 
 [Section - Info panels
@@ -579,7 +579,7 @@ Before showing the title screen (this is the enable menu hyperlinks rule):
 		now enable menu hyperlinks is false;
 
 Table of Options Menu (continued)
-title	order	rule	
+title	order	rule
 "[hyperlinks options]"	40	the toggle menu hyperlinks rule
 
 To say hyperlinks options:
@@ -730,7 +730,7 @@ This is the skip ahead to apprentice level rule:
 
 This is the unlock everything rule:
 	toggle advanced content;
-				
+
 Section - Achievements
 
 Reset the achievements is a truth state variable.
@@ -766,7 +766,7 @@ An exiting a menu rule for the Table of Options Menu (this is the reset achievem
 	if reset the achievements is true:
 		blank out the whole of the Table of Held Achievements;
 		write File of Achievements from Table of Held Achievements;
-				
+
 Section - Rogue stats
 
 Reset the rogue stats is a truth state variable.
@@ -817,7 +817,7 @@ Last when play begins (this is the introduction rule):
 	say "[paragraph break]When you claimed that you were tough enough to take on Malygris single-handedly, everyone knew you had been drinking much more than was good for you. And the prince is not one to let an opportunity pass. Before you could so much as protest, his court mage opened a portal and you were shoved through. Predictably, the portal immediately disappeared. You doubt they're going to open it up again -- but at least you can try to make good on your boast and kill Malygris, the Wizard of Kerkerkruip!";
 	now started boolean is true. [See section Victory message below.]
 
-Section - Starting kits
+[Section - Starting kits
 
 [ We used to generate all random numbers in advance so that the number of random numbers generated doesn't depend on the 	... if that's a problem, we can probably just do starting kits later on after all dungeon generation is finished]
 
@@ -837,7 +837,7 @@ buckler-kit is a rapier-based starting kit. [The only basic kit, so novice playe
 
 Starting kit setup when selecting buckler-kit:
 	equip the player with the buckler.
-	
+
 shadows-kit is an advanced starting kit. shadows-kit contains a scroll of shadows.
 
 Starting kit setup when selecting shadows-kit:
@@ -851,23 +851,23 @@ evil-kit is an advanced starting kit. evil-kit contains a scroll of death.
 
 Starting kit setup when selecting evil-kit:
 	equip the player with the evil dagger.
-	
+
 grenade-kit is an advanced starting kit. grenade-kit contains two fragmentation grenades and a Morphean grenade.
 
 Starting kit setup when selecting grenade-kit:
 	equip the player with Metastasio's hat.
-	
+
 pickaxe-kit is an advanced starting kit. pickaxe-kit contains a scroll of mapping.
 
 Starting kit setup when selecting pickaxe-kit:
-	equip the player with the pickaxe;		
-	
+	equip the player with the pickaxe;
+
 teleport-kit is an advanced rapier-based starting kit. teleport-kit contains a scroll of teleportation.
 
 [no special rules needed for teleport-kit]
 
 addict-kit is an advanced rapier-based starting kit. The rarity is 2.
-	
+
 Starting kit placement possible rule (this is the no novice addicts rule):
 	[this prevents the addict kit from appearing in novice games even if basic game mode is disabled]
 	if considered starting kit is addict-kit and difficulty < 1, rule fails.
@@ -875,19 +875,19 @@ Starting kit placement possible rule (this is the no novice addicts rule):
 Last starting kit setup when selecting addict-kit (this is the cursed amulet stays cursed rule):
 	equip the player with the addict's amulet;
 	have the ment kick in.
-	
-The cursed amulet stays cursed rule is listed after the player starting kit rule in the starting kit setup rules.
+
+The cursed amulet stays cursed rule is listed after the player starting kit rule in the starting kit setup rules.]
 
 Chapter - The end
 
-Section - Death message
+[Section - Death message
 
 Every turn (this is the player death rule):
 	if the player is dead:
 		unless the global attacker is the player:
 			end the story saying "You were killed by [the name of the global attacker]";
 		otherwise:
-			end the story saying "You committed suicide. How unseemly!".
+			end the story saying "You committed suicide. How unseemly!".]
 
 
 Section - Victory message
@@ -916,18 +916,18 @@ Every turn (this is the victory rule):
 	if the player is victorious:
 		follow the victory message rules.
 
-	
-Last victory message rule (this is the normal victory message rule):		
+
+Last victory message rule (this is the normal victory message rule):
 	end the story saying "You have defeated Malygris! With his immense magical powers now at your disposal, it is time to teleport back to Montenoir and pay a little visit to the prince.";
 	rule succeeds.
 
 Victory message rule (this is the Nameless Horror message rule):
-	if the Nameless Horror is follower:		
+	if the Nameless Horror is follower:
 		end the story saying "You have won... technically. The Nameless Horror will find you soon, and your end will not be pretty.";
 		rule succeeds.
 
 Victory message rule (this is the enslaved Malygris message rule):
-	if Malygris is player-enslaved:		
+	if Malygris is player-enslaved:
 		end the story saying "You have turned Malygris into your slave!";
 		rule succeeds.
 
@@ -1037,7 +1037,7 @@ A glulx timed activity rule when fading music is true (this is the fade theme mu
 
 To start a/-- (T - a number) millisecond timer:
 	(- if (glk_gestalt(gestalt_Timer, 0)) glk_request_timer_events({T});  -)
-	
+
 To stop the/-- timer:
 	(- if (glk_gestalt(gestalt_Timer, 0)) glk_request_timer_events(0); -)
 
@@ -1086,11 +1086,11 @@ To unpause (channel - a sound-channel) channel:
 	(- SoundUnpause({channel}); -)
 
 
-Include (- 
+Include (-
 
 [ SoundPlay sound chan options;
 	if (glk_gestalt(gestalt_Sound,0)) {
-		glk_schannel_play_ext(chan.(+ ref-number +), sound, -(options & 1), options & 2); 
+		glk_schannel_play_ext(chan.(+ ref-number +), sound, -(options & 1), options & 2);
 	}
 ];
 

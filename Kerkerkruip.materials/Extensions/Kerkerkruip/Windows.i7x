@@ -237,20 +237,20 @@ To refresh the side panels:
 
 Before reading a command (this is the refresh side windows rule):
 	refresh the side panels;
-	
+
 Before printing the player's obituary (this is the final refresh side windows rule):
 	refresh the side panels;
 
 
 
-Section - Statistics window	
+Section - Statistics window
 
 Showing detailed status report is a truth state variable.
 Showing detailed status report is false.
 
 Rule for refreshing the stats window:
 	if showing detailed status report is false:
-		now long status is false;
+		[now long status is false;
 		now attribute printed is false;
 		follow the status combat stats rules;
 		follow the short player form status rule;[the player's form]
@@ -260,13 +260,14 @@ Rule for refreshing the stats window:
 		say "[line break][run paragraph on]";
 		follow the show basic stats rule;[show statistics]
 		say run paragraph on;
-		now long status is true;
+		now long status is true;]
+		say "long status disabled";
 	otherwise:
 		say "[link 2]< back[end link][line break][line break][run paragraph on]";
-		follow the show basic stats rule;
+		[follow the show basic stats rule;
 		follow the status combat stats rules;
 		follow the status attribute rules;
-		follow the status skill rules;
+		follow the status skill rules;]
 		say run paragraph on;
 
 Rule for processing hyperlinks for the stats window:
@@ -287,9 +288,10 @@ To check initial position of attribute:
 		say ", [run paragraph on]".
 
 This is the unallocated faculty short status rule:
-	if long status is false:
+  say "long status problems.";
+	[if long status is false:
 		if unallocated faculty is greater than 0:
-			say "[italic type]Increase one of your faculties by typing 'body', 'mind', or 'spirit' ([unallocated faculty] point[if unallocated faculty is greater than 1]s[end if]).[roman type][line break][run paragraph on]".
+			say "[italic type]Increase one of your faculties by typing 'body', 'mind', or 'spirit' ([unallocated faculty] point[if unallocated faculty is greater than 1]s[end if]).[roman type][line break][run paragraph on]".]
 
 Rule for refreshing the stats window header:
 	say "[first custom style]Statistics[roman type]";
@@ -302,7 +304,7 @@ Section - Powers window
 Currently displayed power is a number variable.
 
 Power-tip-text is a text variable.
-	
+
 Rule for refreshing the powers window:
 	if the currently displayed power is not 0:
 		let ability be the currently displayed power typecast to an object;
@@ -310,7 +312,7 @@ Rule for refreshing the powers window:
 		let T be "[ability]" in title case;
 		say "[bold type][T].[roman type][line break][description of the ability] [link 2]< back[end link][run paragraph on]";
 	otherwise:
-		let pow be the number of granted powers;
+		[let pow be the number of granted powers;
 		if pow is 0:
 			say "[bold type]You have not yet acquired any special powers[roman type].";
 		otherwise:
@@ -327,14 +329,15 @@ Rule for refreshing the powers window:
 		if pow < 3 and (turn count is 1 or the remainder after dividing turn count by 30 is 0):
 			now power-tip-text is the next tip text;
 		say "[line break][italic type]Tip:[roman type] [power-tip-text]";
-		say "[line break][run paragraph on]";
+		say "[line break][run paragraph on]";]
+		say "disabled power logic.";
 
 Rule for processing hyperlinks for the powers window:
 	let ability be the hyperlink ID typecast to an object;
-	if ability is a power:
+	[if ability is a power:
 		now the currently displayed power is the hyperlink ID;
 	otherwise:
-		now the currently displayed power is 0;
+		now the currently displayed power is 0;]
 	refresh the powers window;
 
 Rule for refreshing the powers window header:
@@ -352,7 +355,7 @@ To decide what object is (N - a number) typecast to an object:
 Section - Inventory window
 
 Rule for refreshing the inventory-window:
-	follow the full inventory rule; 
+	[follow the full inventory rule;]
 	say run paragraph on;
 
 Rule for refreshing the inventory-window header:
@@ -377,7 +380,7 @@ Check enabling the information panels:
 		say "Information panels are disabled in screen reader mode." instead;
 	if window panels are enabled:
 		say "The information panels are already enabled." instead;
-		
+
 Check disabling the information panels:
 	if screen reader mode is enabled:
 		say "Information panels are disabled in screen reader mode." instead;
@@ -397,7 +400,7 @@ Carry out disabling the information panels:
 	close side windows;
 	open up the status window;
 	say "The information panels have been disabled. Type PANELS to re-enable them." instead;
-	
+
 To open side windows:
 	if window panels are disabled:
 		rule fails;
@@ -408,18 +411,18 @@ To open side windows:
 	open up the stats window;
 	open up the powers window;
 	open up the inventory-window;
-	
+
 To close side windows:
 	close the stats window;
 	close the inventory-window;
-	
+
 
 Section - Events
 
 Last when play begins (this is the check info panel capacity rule):
-	if screen reader mode is enabled:
+	[if screen reader mode is enabled:
 		open up the status window;
-		make no decision;
+		make no decision;]
 	if window panels are disabled:
 		say "[bracket]Information panels are disabled. Type PANELS to enable them.[close bracket][line break][run paragraph on]";
 	otherwise:
@@ -444,17 +447,17 @@ First before displaying (this is the fix our windows rule before displaying rule
 
 Last after displaying:
 	close the status window;
-	if in-game menu-checking:
+	[if in-game menu-checking:
 		open side windows;
-		open up the status window;
+		open up the status window;]
 
 
 
 [We also need to reset the windows when a game is restored.]
-After restoring from a saved game:
+[After restoring from a saved game:
 	close the status window;
 	close side windows;
-	follow the check info panel capacity rule.
+	follow the check info panel capacity rule.]
 
 
 
